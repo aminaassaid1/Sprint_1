@@ -65,7 +65,7 @@ include_once(__ROOT__ . '/Layout/head.php');
                                 <th scope="col">Réference</th>
                                 <th scope="col">Code</th>
                                 <th scope="col">Nom</th>
-                                <th scope="col" style=" width:350 px;">Action</th>
+                                <th scope="col">Action</th>
                             </tr>
                             </thead>
                             <tbody>
