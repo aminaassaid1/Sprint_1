@@ -5,7 +5,7 @@ define('__ROOT__', dirname(dirname(__FILE__)));
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include_once(__ROOT__ . "/Views/Presentation/Layout/head.php");
+include_once(__ROOT__ . '/Layout/head.php');
 ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
