@@ -20,21 +20,6 @@ include_once(__ROOT__ . '/Layout/head.php');
         include_once(__ROOT__ . "/Layout/sidebare.php");
         ?>
 
-        <style>
-            button {
-                background-color: #3498db;
-                color: #fff;
-                padding: 10px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-
-            button i {
-                margin-right: 5px; /* Add some space between the icon and text */
-            }
-
-        </style>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -46,7 +31,7 @@ include_once(__ROOT__ . '/Layout/head.php');
                 <!-- Default box -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title"> Gestions des Stagiaire</h3>
+                        <h3 class="card-title"> Gestions des Compétences</h3>
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                                 <i class="fas fa-minus"></i>
@@ -74,7 +59,7 @@ include_once(__ROOT__ . '/Layout/head.php');
                                 <td>Maquettage</td>
                                 <td>Maquetter une application mobile</td>
                                 <td>
-                                    <button type="button" class="btn btn-warning btn-sm">Modifier</button>
+                                    <button type="button" class="btn btn-warning btn-sm" data-href="edit.php">Modifier</button>
                                     <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
                                 </td>
                             </tr>
@@ -83,7 +68,7 @@ include_once(__ROOT__ . '/Layout/head.php');
                                 <td>Base de données</td>
                                 <td>Manipuler une base de données - perfectionnement</td>
                                 <td>
-                                    <button type="button" class="btn btn-warning btn-sm">Modifier</button>
+                                    <button type="button" class="btn btn-warning btn-sm" data-href="edit.php">Modifier</button>
                                     <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
                                 </td>
                             </tr>
@@ -92,7 +77,7 @@ include_once(__ROOT__ . '/Layout/head.php');
                                 <td>Back-end</td>
                                 <td>Développer la partie back-end d’une application web ou web mobile - perfectionnement</td>
                                 <td>
-                                    <button type="button" class="btn btn-warning btn-sm">Modifier</button>
+                                    <button type="button" class="btn btn-warning btn-sm" data-href="edit.php">Modifier</button>
                                     <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
                                 </td>
                             </tr>
@@ -101,7 +86,7 @@ include_once(__ROOT__ . '/Layout/head.php');
                                 <td>Collaboration et gestion de projet</td>
                                 <td>Collaborer à la gestion d’un projet informatique et à l’organisation de l’environnement de développement - perfectionnement</td>
                                 <td>
-                                    <button type="button" class="btn btn-warning btn-sm">Modifier</button>
+                                    <button type="button" class="btn btn-warning btn-sm" data-href="edit.php">Modifier</button>
                                     <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
                                 </td>
                             </tr>
@@ -110,7 +95,7 @@ include_once(__ROOT__ . '/Layout/head.php');
                                 <td>Mobile</td>
                                 <td>Développer une application mobile native, avec Android et React Native</td>
                                 <td>
-                                    <button type="button" class="btn btn-warning btn-sm">Modifier</button>
+                                    <button type="button" class="btn btn-warning btn-sm" data-href="edit.php">Modifier</button>
                                     <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
                                 </td>
                             </tr>
@@ -119,7 +104,7 @@ include_once(__ROOT__ . '/Layout/head.php');
                                 <td>Tests</td>
                                 <td>Développer une application mobile native, avec Android et React Native</td>
                                 <td>
-                                    <button type="button" class="btn btn-warning btn-sm">Modifier</button>
+                                    <button type="button" class="btn btn-warning btn-sm" data-href="edit.php">Modifier</button>
                                     <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
                                 </td>
                             </tr>
@@ -128,13 +113,12 @@ include_once(__ROOT__ . '/Layout/head.php');
                                 <td>Déploiement</td>
                                 <td>Préparer et exécuter le déploiement d’une application web et mobile - perfectionnement</td>
                                 <td>
-                                    <button type="button" class="btn btn-warning btn-sm">Modifier</button>
+                                    <button type="button" class="btn btn-warning btn-sm"data-href="edit.php">Modifier</button>
                                     <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
-
                     </div>
                 </div>
 
@@ -156,5 +140,13 @@ include_once(__ROOT__ . '/Layout/head.php');
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script>
+    $(document).ready(function () {
+        $('button[data-href]').click(function () {
+            window.location.href = $(this).data('href');
+        });
+    });
+</script>
+
 
 </html>
