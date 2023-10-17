@@ -1,4 +1,6 @@
 <?php
+
+
 class Competence
 {
     private $ID;
@@ -57,4 +59,5 @@ class Competence
         $this->DESCRIPTION = $DESCRIPTION;
     }
 }
-?>
+
+

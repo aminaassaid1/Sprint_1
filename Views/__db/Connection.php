@@ -19,7 +19,7 @@ class DatabaseConnection {
         try {
             $this->conn = new PDO("mysql:host=$this->serverName;dbname=$this->dbname;charset=utf8", $this->username, $this->password);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Connected successfully";  // You can remove this line in production
+            echo "Connected successfully";  
         } catch (PDOException $e) {
             error_log("Connection failed: " . $e->getMessage());
             echo "Oops! Something went wrong. Please try again later.";

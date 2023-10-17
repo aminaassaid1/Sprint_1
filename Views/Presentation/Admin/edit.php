@@ -51,7 +51,6 @@ include_once(__ROOT__ . '/Layout/head.php');
                                 <div class="form-group">
                                     <label for="inputReference">
                                         Reference
-                                        <span class="text-danger">*</span>
                                     </label>
                                     <input name="reference" type="text" id="inputReference" class="form-control" required>
                                 </div>
@@ -60,7 +59,7 @@ include_once(__ROOT__ . '/Layout/head.php');
                                     <input name="code" type="text" id="inputCode" class="form-control" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputNom">Nom<span class="text-danger">*</span></label>
+                                    <label for="inputNom">Nom</label>
                                     <input name="nom" type="text" id="inputNom" class="form-control" required>
                                 </div>
                                 <div class="form-group">

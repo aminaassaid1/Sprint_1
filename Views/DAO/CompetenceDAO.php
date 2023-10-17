@@ -1,5 +1,6 @@
 <?php
-require_once 'C:\Solicoders\Sprint_1\Views\__db\Connection.php';
+include "./Connection.php";
+include "./Entities/Competence.php";
 class CompetencesDAO
 {
     private $pdo = null;
@@ -14,7 +15,7 @@ class CompetencesDAO
 
     public function AddCompetence(Competence $competence)
     {
-        $sql = "INSERT INTO `Competences` (`REFERENCE`, `CODE`, `NOM`, `DESCRIPTION`) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO `competences` (`REFERENCE`, `CODE`, `NOM`, `DESCRIPTION`) VALUES (?, ?, ?, ?)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             $competence->getREFERENCE(),
