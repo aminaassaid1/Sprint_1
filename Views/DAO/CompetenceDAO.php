@@ -30,7 +30,7 @@ class CompetencesDAO
 
     public function GetAllCompetences()
     {
-        $sql = 'SELECT ID, REFERENCE, CODE, NOM, DESCRIPTION FROM Competences'; // Retrieve DESCRIPTION field
+        $sql = 'SELECT ID, REFERENCE, CODE, NOM, DESCRIPTION FROM Competences';
         $stmt = $this->pdo->query($sql);
         $competences_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $competences = [];
@@ -41,7 +41,7 @@ class CompetencesDAO
             $competence->setREFERENCE($competence_data['REFERENCE']);
             $competence->setCODE($competence_data['CODE']);
             $competence->setNOM($competence_data['NOM']);
-            $competence->setDESCRIPTION($competence_data['DESCRIPTION']); // Set the DESCRIPTION field
+            $competence->setDESCRIPTION($competence_data['DESCRIPTION']);
             $competences[] = $competence;
         }
 
@@ -61,7 +61,7 @@ class CompetencesDAO
             $competence->setREFERENCE($competence_data['REFERENCE']);
             $competence->setCODE($competence_data['CODE']);
             $competence->setNOM($competence_data['NOM']);
-            $competence->setDESCRIPTION($competence_data['Description']); // Set the DESCRIPTION field
+            $competence->setDESCRIPTION($competence_data['Description']);
             return $competence;
         }
 
