@@ -40,7 +40,6 @@ Gestions Des Niveaux</p>
 <p>
 Gestion Formateurs
 
-<span class="badge badge-info right">5</span>
 </p>
 </a>
 

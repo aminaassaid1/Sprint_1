@@ -1,37 +1,24 @@
 <?php
-
 class DatabaseConnection {
-    private $serverName;
-    private $username;
-    private $password;
-    private $dbname;
-    private $conn;
+    private $host = "localhost";
+    private $user = 'root';
+    private $dbname = 'CompetencesDatabase';
+    private $password = '';
 
-    public function __construct($serverName, $username, $password, $dbname) {
-        $this->serverName = $serverName;
-        $this->username = $username;
-        $this->password = $password;
-        $this->dbname = $dbname;
-        $this->connect();
-    }
-
-    private function connect() {
+    public function connect() {
         try {
-            $this->conn = new PDO("mysql:host=$this->serverName;dbname=$this->dbname;charset=utf8", $this->username, $this->password);
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Connected successfully";  
+            $dsn = "mysql:host=" . $this->host . ";dbname=" . $this->dbname . ";charset=utf8";
+            $options = [
+                PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_EMULATE_PREPARES   => false,
+            ];
+            $db = new PDO($dsn, $this->user, $this->password, $options);
+            return $db;
         } catch (PDOException $e) {
-            error_log("Connection failed: " . $e->getMessage());
-            echo "Oops! Something went wrong. Please try again later.";
-            exit();
+            echo 'Connection failed: ' . $e->getMessage();
+
         }
     }
-
-    public function getConnection() {
-        return $this->conn;
-    }
-
-    public function closeConnection() {
-        $this->conn = null;
-    }
 }
+?>

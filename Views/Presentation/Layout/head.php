@@ -34,4 +34,10 @@
         href="../Assets/vendor/AdminLTE-3.2.0/plugins/summernote/summernote-bs4.min.css">
     <!-- Font Awesome from CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+
+    <link rel="stylesheet"
+          href="../Assets/css/style.css">
+
+
 </head>

@@ -1,21 +1,22 @@
 <?php
-include "./Connection.php";
-include "./Entities/Competence.php";
+require_once 'C:\Solicoders\Sprint_1\Views\__db\Connection.php';
+
 class CompetencesDAO
 {
     private $pdo = null;
 
     public function __construct()
     {
-        $databaseConnection = new DatabaseConnection("localhost", "root", "", "sprint1");
-        $this->pdo = $databaseConnection->getConnection();
+        $databaseConnection = new DatabaseConnection();
+        $this->pdo = $databaseConnection->connect();
     }
+
 
 
 
     public function AddCompetence(Competence $competence)
     {
-        $sql = "INSERT INTO `competences` (`REFERENCE`, `CODE`, `NOM`, `DESCRIPTION`) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO `Competences` (`REFERENCE`, `CODE`, `NOM`, `DESCRIPTION`) VALUES (?, ?, ?, ?)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             $competence->getREFERENCE(),
@@ -29,7 +30,7 @@ class CompetencesDAO
 
     public function GetAllCompetences()
     {
-        $sql = 'SELECT ID, REFERENCE, CODE, NOM, DESCRIPTION FROM Competences';
+        $sql = 'SELECT ID, REFERENCE, CODE, NOM, DESCRIPTION FROM Competences'; // Retrieve DESCRIPTION field
         $stmt = $this->pdo->query($sql);
         $competences_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $competences = [];
@@ -40,7 +41,7 @@ class CompetencesDAO
             $competence->setREFERENCE($competence_data['REFERENCE']);
             $competence->setCODE($competence_data['CODE']);
             $competence->setNOM($competence_data['NOM']);
-            $competence->setDESCRIPTION($competence_data['DESCRIPTION']);
+            $competence->setDESCRIPTION($competence_data['DESCRIPTION']); // Set the DESCRIPTION field
             $competences[] = $competence;
         }
 
@@ -60,7 +61,7 @@ class CompetencesDAO
             $competence->setREFERENCE($competence_data['REFERENCE']);
             $competence->setCODE($competence_data['CODE']);
             $competence->setNOM($competence_data['NOM']);
-            $competence->setDESCRIPTION($competence_data['DESCRIPTION']);
+            $competence->setDESCRIPTION($competence_data['Description']); // Set the DESCRIPTION field
             return $competence;
         }
 

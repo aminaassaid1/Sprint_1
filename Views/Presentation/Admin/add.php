@@ -1,52 +1,73 @@
 <?php
 define('__ROOT__', dirname(dirname(__FILE__)));
 
-include_once(__ROOT__ . '/Layout/head.php');
+include_once(__ROOT__ . "/Layout/Loader.php");
+
+$competenceBLO = new CompetenceBLO();
+$errorMessage = '';
+
+if (isset($_POST['add_competence'])) {
+    $competence = new Competence();
+    $reference = trim($_POST['reference']);
+    $code = trim($_POST['code']);
+    $nom = trim($_POST['nom']);
+    $description = trim($_POST['description']);
+
+    // Remove validation checks for "Reference" and "Nom"
+    $competence->setREFERENCE($reference);
+    $competence->setCODE($code);
+    $competence->setNOM($nom);
+    $competence->setDescription($description);
+
+    $insertedId = $competenceBLO->AddCompetence($competence);
+
+    if ($insertedId > 0) {
+
+        header("Location: index.php");
+    } else {
+        $errorMessage = 'Failed to add competence. Please try again.';
+    }
+}
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Page Title</title>
-
-    <!-- Include your CSS and other head elements here -->
-    <?php include_once(__ROOT__ . '/Layout/links.php'); ?>
-</head>
+<html lang="fr">
+<?php
+include_once(__ROOT__ . "/Layout/head.php");
+?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
     <!-- Navbar -->
-    <?php include_once(__ROOT__ . "/Layout/navbare.php"); ?>
+    <?php
+    include_once(__ROOT__ . "/Layout/navbare.php");
+    ?>
+    <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    <?php include_once(__ROOT__ . "/Layout/sidebare.php"); ?>
+    <?php
+    include_once(__ROOT__ . "/Layout/sidebare.php");
+    ?>
+    <!-- /.sidebar -->
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
+    <div class="content-wrapper" style="min-height: 1604.61px;">
         <section class="content-header">
-            <h1>Ajouter Compétences</h1>
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6"></div>
+                </div>
+            </div>
         </section>
 
         <section class="content">
-            <form method="post">
+            <form method="post" onsubmit="return validateForm()">
                 <div class="row">
                     <div class="col">
                         <div class="card card-primary">
                             <div class="card-header">
-                                <div class="text-center">
-                                    <?php if (!empty($errorMessage)): ?>
-                                        <div class="alert alert-danger">
-                                            <?php echo $errorMessage; ?>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-
-                                <h3 class="card-title">Ajouter Compétences</h3>
+                                <div class="text-center"></div>
+                                <h3 class="card-title">Ajouter Competences</h3>
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"
                                             title="Collapse">
@@ -58,21 +79,23 @@ include_once(__ROOT__ . '/Layout/head.php');
                                 <div class="form-group">
                                     <label for="inputReference">
                                         Reference
+                                        <span class="text-danger">*</span>
                                     </label>
-                                    <input name="reference" type="text" id="inputReference" class="form-control" required>
+                                    <input name="reference" type="text" id="inputReference" class="form-control">
+                                    <small id="referenceError" class="text-danger"></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputCode">Code</label>
-                                    <input name="code" type="text" id="inputCode" class="form-control" required>
+                                    <input name="code" type="text" id="inputCode" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputNom">Nom<span
-                                    <input name="nom" type="text" id="inputNom" class="form-control" required>
+                                    <label for="inputNom">Nom<span class="text-danger">*</span></label>
+                                    <input name="nom" type="text" id="inputNom" class="form-control">
+                                    <small id="nomError" class="text-danger"></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputDescription">Description</label>
-                                    <textarea name="description" id="inputDescription"
-                                              class="form-control"></textarea>
+                                    <textarea name="description" id="inputDescription" class="form-control"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -87,13 +110,37 @@ include_once(__ROOT__ . '/Layout/head.php');
             </form>
         </section>
     </div>
-
 </div>
 
-<?php include_once(__ROOT__ . '/Layout/footer.php'); ?>
-<?php include_once(__ROOT__ . '/Layout/links.php'); ?>
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<?php
+include_once(__ROOT__ . "/Layout/footer.php");
+?>
 </body>
+<?php
+include_once(__ROOT__ . "/Layout/links.php");
+?>
 
+<script>
+    function validateForm() {
+        var reference = document.getElementById("inputReference").value;
+        var nom = document.getElementById("inputNom").value;
+
+
+        document.getElementById("referenceError").innerText = "";
+        document.getElementById("nomError").innerText = "";
+
+        if (reference.trim() === "") {
+            document.getElementById("referenceError").innerText = "Reference cannot be empty";
+            return false; // Prevent form submission
+        }
+
+        if (nom.trim() === "") {
+            document.getElementById("nomError").innerText = "Nom cannot be empty";
+            return false; // Prevent form submission
+        }
+
+
+        return true;
+    }
+</script>
 </html>
